@@ -6,6 +6,8 @@ A skill that belongs to one harness only stays in that harness's own folder, not
 - Pi, OpenCode, Gemini CLI, Codex and cursor-agent read this folder directly.
 - Claude Code only reads `~/.claude/skills`; `.tools/link-claude-skills` links each skill here into it
   and runs on every Claude Code session start (SessionStart hook in `~/.claude/settings.json`).
+- OpenCode also reads `~/.claude/skills`, which would leak Claude-only skills into it;
+  `OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=1` in `~/.bashrc` turns that off.
 
 ## Adding and updating
 
