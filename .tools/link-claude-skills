@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Link every shared skill in ~/.agents/skills into ~/.claude/skills.
+# Claude Code is the only harness that doesn't read ~/.agents/skills itself.
+# Claude-only entries (real folders like synced/, links pointing elsewhere) are left alone.
+set -euo pipefail
+
+central="$HOME/.agents/skills"
+claude="$HOME/.claude/skills"
+mkdir -p "$claude"
+
+for src in "$central"/*/; do
+  name=$(basename "$src")
+  [ -f "$src/SKILL.md" ] || continue
+  dest="$claude/$name"
+  if [ -L "$dest" ]; then
+    [ "$(readlink -f "$dest")" = "$(readlink -f "$src")" ] && continue
+    case "$(readlink "$dest")" in
+      *.agents/skills/*) ln -sfn "../../.agents/skills/$name" "$dest" ;;
+      *) echo "link-claude-skills: skipping $name, $dest links elsewhere" >&2 ;;
+    esac
+  elif [ -e "$dest" ]; then
+    echo "link-claude-skills: skipping $name, Claude-only copy at $dest" >&2
+  else
+    ln -s "../../.agents/skills/$name" "$dest"
+  fi
+done
+
+# Drop links into the central folder whose skill no longer exists.
+for dest in "$claude"/*; do
+  [ -L "$dest" ] || continue
+  case "$(readlink "$dest")" in
+    *.agents/skills/*) [ -e "$dest" ] || rm "$dest" ;;
+  esac
+done
