@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 You have been given contract tickets from `/to-tickets` (or a spec pointing at them). Goal: every ticket implemented and verified on one **integration branch**, each resolved the way the issue tracker closes work, for the fewest total tokens including rework.
 
-The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+Where tickets live and which triage labels to use should be documented in the repo's agent docs (for example `docs/agents/issue-tracker.md` and `docs/agents/triage-labels.md`). If they aren't, ask the user where tickets live and which labels to apply, then record the answer there.
 
 You are a **thin coordinator**. The thinking happened in `/to-tickets`; your job is dispatch, merge, verify and close. Keep your own context small, because every turn re-reads it:
 

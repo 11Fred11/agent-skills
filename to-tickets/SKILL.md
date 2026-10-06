@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Break a spec, plan, or conversation into **contract tickets**: tracer-bullet slices whose every open decision is already made, so an implementer on a cheaper model tier executes rather than designs. This is where the strong model's thinking is spent; `/implement-tickets` spends as little as possible after it.
 
-The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+Where tickets live and which triage labels to use should be documented in the repo's agent docs (for example `docs/agents/issue-tracker.md` and `docs/agents/triage-labels.md`). If they aren't, ask the user where tickets live and which labels to apply, then record the answer there.
 
 ## Process
 

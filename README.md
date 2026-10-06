@@ -80,27 +80,16 @@ Reach for these when the moment calls for them; they sit outside the main flow.
 | --- | --- |
 | `research` *(auto)* | Investigates a question against primary sources and saves the findings to the repo. |
 | `librarian` *(auto)* | Recalls from, and files into, the owner's personal knowledge wiki. |
-| `find-skills` *(auto)* | Finds and installs skills for a task you describe. |
 | `writing-for-agents` *(auto)* | How to write skills, `AGENTS.md` and other documents agents read. |
 | `wizard` *(auto)* | Generates an interactive bash wizard for steps only a human can perform. |
 
-**System**
-
-| Skill | What it does |
-| --- | --- |
-| `diagnose-crash` *(auto)* | Explains a local program crash from its systemd core dump. |
-| `omarchy` *(auto)* | Customises the Omarchy desktop: Hyprland, themes, bar, terminals. |
-
-**Setup and routing**
-
-| Skill | What it does |
-| --- | --- |
-| `/setup-matt-pocock-skills` | One-time repo setup for the engineering skills: issue tracker, triage labels, domain docs. |
-| `/ask-matt` | Asks which skill fits your situation (upstream router; read its `/implement-spec` as `/implement-tickets`). |
 
 ## How the folder is wired
 
-A skill that belongs to one harness only stays in that harness's own folder, not here.
+A skill that belongs to one harness or to the OS stays outside this repo. The Omarchy system skills
+(`omarchy`, `diagnose-crash`) ship in `/usr/share/omarchy/default/agents/skills` and update with the OS; each
+harness links them from there: `~/.claude/skills`, `~/.codex/skills` and `~/.pi/agent/skills` (set up by Omarchy),
+plus `~/.config/opencode/skills`, `~/.gemini/skills` and `~/.cursor/skills`.
 
 - Pi, OpenCode, Gemini CLI, Codex and cursor-agent read this folder directly.
 - Claude Code only reads `~/.claude/skills`; `.tools/link-claude-skills` links each skill here into it
@@ -115,6 +104,9 @@ A skill that belongs to one harness only stays in that harness's own folder, not
   List a repo's skills with `npx skills add <owner/repo> -l`.
 - Updates overwrite local edits to third-party skills. Review with `git diff` after updating
   and keep or re-apply your refinements before committing.
+- Engineering skills that need an issue tracker read it from the repo's `docs/agents/` docs
+  (`issue-tracker.md`, `triage-labels.md`, `domain.md`). Upstream skills may still say "run
+  `/setup-matt-pocock-skills`", which was removed on 2026-10-06: write those docs by hand instead.
 - Our own skills (`to-tickets`, `implement-tickets`, `unchained`) aren't tracked by `npx skills`:
   `to-tickets` and `implement-tickets` were detached from `mattpocock/skills` on 2026-10-06 by removing them
   from `~/.local/state/skills/.skill-lock.json`, so updates leave them alone.
