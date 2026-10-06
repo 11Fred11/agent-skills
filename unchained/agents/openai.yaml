@@ -1,0 +1,5 @@
+interface:
+  display_name: "Unchained"
+  short_description: "Reimagine the solution from the goal up and build the bolder version"
+policy:
+  allow_implicit_invocation: false
