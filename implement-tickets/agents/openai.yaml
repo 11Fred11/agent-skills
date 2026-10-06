@@ -1,0 +1,5 @@
+interface:
+  display_name: "Implement Tickets"
+  short_description: "Implement /to-tickets lanes on one integration branch with a thin coordinator."
+policy:
+  allow_implicit_invocation: false

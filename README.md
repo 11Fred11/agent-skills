@@ -16,3 +16,10 @@ A skill that belongs to one harness only stays in that harness's own folder, not
   List a repo's skills with `npx skills add <owner/repo> -l`.
 - Updates overwrite local edits to third-party skills. Review with `git diff` after updating
   and keep or re-apply your refinements before committing.
+
+## Our own skills
+
+- `to-tickets` and `implement-tickets` are ours, detached from `mattpocock/skills` on 2026-10-06:
+  removed from `~/.local/state/skills/.skill-lock.json` so `npx skills update` won't overwrite them.
+  They replace upstream `to-tickets` and `implement-spec`; upstream `ask-matt` still mentions
+  `/implement-spec`, read that as `/implement-tickets`.
